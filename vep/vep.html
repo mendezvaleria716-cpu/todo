@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposición: El Vaper 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --blue: #2563eb;
+            --dark: #0f172a;
+            --white: #ffffff;
+            /* Letra fluida: ni gigante ni pequeña */
+            --p-font: clamp(1rem, 2.2vw, 1.4rem);
+            --h1-font: clamp(2.3rem, 7vw, 4.5rem);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background: var(--dark); 
+            color: #334155;
+            overflow: hidden; 
+        }
+
+        .deck { width: 100vw; height: 100vh; position: relative; }
+
+        .slide {
+            position: absolute; width: 100%; height: 100%;
+            display: none; align-items: center; justify-content: center;
+            background: var(--white); padding: 5%;
+        }
+
+        .slide.active { display: flex; animation: slideIn 0.4s ease-out; }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .content { width: 100%; max-width: 1150px; }
+
+        /* Tipografía */
+        h1 { font-size: var(--h1-font); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; color: var(--dark); letter-spacing: -2px; }
+        h2 { font-size: clamp(1.8rem, 4vw, 3rem); color: var(--blue); margin-bottom: 1.2rem; font-weight: 800; }
+        p { font-size: var(--p-font); line-height: 1.5; color: #475569; margin-bottom: 1.2rem; }
+
+        .step { color: var(--blue); font-weight: 800; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
+
+        /* Layout Responsivo */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+
+        .image-box img { 
+            width: 100%; 
+            max-height: 55vh; 
+            object-fit: cover; 
+            border-radius: 30px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+        }
+
+        /* Portada */
+        .hero { background: var(--dark); color: white; text-align: left; }
+        .hero h1 { color: white; }
+        .accent-bar { width: 70px; height: 8px; background: var(--blue); margin-bottom: 2rem; }
+        .subtitle { color: #94a3b8; font-size: 1.6rem; font-weight: 300; }
+        .team { margin-top: 3.5rem; font-size: 1rem; opacity: 0.6; }
+
+        /* Mitos vs Realidad */
+        .myth-stack { display: flex; flex-direction: column; gap: 1rem; }
+        .myth-item { padding: 1.5rem; border-radius: 18px; font-size: 1.2rem; }
+        .red { background: #fee2e2; border-left: 8px solid #ef4444; color: #991b1b; }
+        .green { background: #dcfce7; border-left: 8px solid #22c55e; color: #14532d; font-weight: bold; }
+
+        /* Química */
+        .dark { background: #1e293b; color: white; }
+        .dark h2 { color: white; }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .card { background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 25px; border-bottom: 6px solid var(--blue); }
+        .card h3 { color: var(--blue); margin-bottom: 10px; font-size: 1.6rem; }
+        .card p { color: #cbd5e1; }
+
+        /* VIDEO RESPONSIVO REAL */
+        .video-responsive {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 25px;
+            margin: 1.5rem 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .video-responsive iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        }
+
+        /* Conclusión */
+        .final { background: var(--dark); color: white; text-align: center; }
+        .final-card { background: rgba(255,255,255,0.06); padding: 1.8rem; border-radius: 20px; margin-bottom: 1.2rem; font-size: 1.4rem; border: 1px solid rgba(255,255,255,0.1); }
+        .thanks { font-size: 2rem; color: var(--blue); font-weight: 900; margin-top: 2rem; }
+        .accent-bar.center { margin: 0 auto 2rem; }
+
+        /* Navegación */
+        .counter { position: absolute; bottom: 2rem; right: 3rem; color: #94a3b8; font-weight: bold; }
+
+        /* MEDIA QUERIES */
+        @media (max-width: 900px) {
+            .grid { grid-template-columns: 1fr; text-align: center; }
+            .image-box { display: none; }
+            .hero { text-align: center; }
+            .accent-bar { margin: 0 auto 2rem; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="deck">
+        <section class="slide active hero">
+            <div class="content">
+                <div class="accent-bar"></div>
+                <h1>EL VAPER</h1>
+                <p class="subtitle">Análisis Químico y Efectos en el Cuerpo</p>
+                <ul>
+                    <li>Stefania Osorio Lozano</li>
+                    <li>Valeria Méndez Cañas</li>
+                    <li>Valentina Sierra Mesa</li>
+                    <li>Nicol Gamboa Morante</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content grid">
+                <div class="text">
+                    <span class="step">01. Funcionamiento</span>
+                    <h2>¿Qué es realmente?</h2>
+                    <p>Es un dispositivo que calienta un líquido mediante una resistencia eléctrica para crear un <strong>aerosol</strong>. No es vapor de agua; es una nube de partículas químicas finas que dañan los pulmones.</p>
+                </div>
+                <div class="image-box">
+                    <img src="https://images.pexels.com/photos/3545426/pexels-photo-3545426.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Vape Tech">
+                </div>
+            </div>
+        </section>
+
+        <section class="slide dark">
+            <div class="content">
+                <span class="step">02. Toxicología</span>
+                <h2>Componentes Críticos</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>Químicos Tóxicos</h3>
+                        <p>Contiene <strong>Formaldehído</strong>, una sustancia irritante que puede causar daños celulares permanentes en el sistema respiratorio.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Metales Pesados</h3>
+                        <p>Al calentarse la resistencia, se desprenden partículas de <strong>Níquel y Plomo</strong> que entran a tu organismo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content">
+                <span class="step">03. Debate</span>
+                <h2>Mitos vs. Realidad</h2>
+                <div class="myth-stack">
+                    <div class="myth-item red"><strong>Mito:</strong> "Es inofensivo porque sabe a fruta."</div>
+                    <div class="myth-item green"><strong>Realidad:</strong> Los sabores ocultan químicos irritantes y nicotina adictiva.</div>
+                    <div class="myth-item red"><strong>Mito:</strong> "No afecta porque no hay humo de tabaco."</div>
+                    <div class="myth-item green"><strong>Realidad:</strong> El aerosol inflama los pulmones de manera similar al tabaco.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content grid">
+                <div class="image-box">
+                    <img src="https://images.pexels.com/photos/4226119/pexels-photo-4226119.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Lungs">
+                </div>
+                <div class="text">
+                    <span class="step">04. Biología</span>
+                    <h2>Daño en los Pulmones</h2>
+                    <p>El aerosol llega a los <strong>alvéolos</strong> y destruye la protección natural del pulmón, dificultando que el oxígeno pase correctamente a la sangre.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content">
+                <span class="step">05. Salud Mental</span>
+                <h2>Adicción y el Cerebro</h2>
+                <div class="video-responsive">
+                    <iframe 
+                        src="https://www.youtube.com/embed/DKp_JJ9oP5s?rel=0&modestbranding=1" 
+                        title="Video Educativo" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p style="text-align: center; color: #64748b;">La nicotina altera la maduración de la atención y el control de impulsos.</p>
+            </div>
+        </section>
+
+        <section class="slide final">
+            <div class="content">
+                <div class="accent-bar center"></div>
+                <h1>Cierre y Reflexión</h1>
+                <div class="final-card">⚠️ No existe el vapeo sano; el daño ocurre en silencio.</div>
+                <div class="final-card">🧠 Tu cerebro aún se está formando. Protégelo de la química.</div>
+                <p class="thanks">¡GRACIAS POR SU ATENCIÓN!</p>
+            </div>
+        </section>
+
+        <div class="counter"><span id="idx">1</span> / 7</div>
+    </div>
+
+    <script>
+        let cur = 0;
+        const slides = document.querySelectorAll('.slide');
+        const idx = document.getElementById('idx');
+
+        function show(n) {
+            slides[cur].classList.remove('active');
+            cur = (cur + n + slides.length) % slides.length;
+            slides[cur].classList.add('active');
+            idx.innerText = cur + 1;
+        }
+
+        // Teclado
+        document.addEventListener('keydown', e => {
+            if(e.key === "ArrowRight" || e.key === " ") show(1);
+            if(e.key === "ArrowLeft") show(-1);
+        });
+
+        // Touch
+        let startX = 0;
+        document.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+        document.addEventListener('touchend', e => {
+            let endX = e.changedTouches[0].clientX;
+            if (startX - endX > 50) show(1);
+            if (endX - startX > 50) show(-1);
+        });
+    </script>
+</body>
+</html>
